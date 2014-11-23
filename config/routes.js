@@ -34,7 +34,7 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  }
+  },
 
   /***************************************************************************
   *                                                                          *
@@ -45,5 +45,13 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+
+
+  'get /create': {
+    controller: 'User',
+    action: 'nuevo'
+  },
+
+  'DELETE /comment/:id' :'Comment.inactivateComment',
 
 };
