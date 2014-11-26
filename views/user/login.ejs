@@ -1,0 +1,9 @@
+<% if (message){ %>
+  <div style='border:1px solid red; color:red; margin:auto; width:50%'><%- message %></div>
+<% }%>
+<form action="login" method="POST">
+	<input type="text" name="email" />
+	<input type="password" name="password" />
+	<input type="hidden" name="doLogin" value="true" />
+	<input type="submit" />
+	</form>

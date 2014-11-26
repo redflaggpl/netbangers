@@ -4,6 +4,7 @@
  * @description :: Server-side logic for managing users
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
+var bcrypt = require('bcrypt');
 
 module.exports = {
 
@@ -32,6 +33,34 @@ module.exports = {
     .exec(function(err, users){
       res.ok(users);
     });
-	}	
+	},
+
+	login: function(req, res){
+		if(!req.param('doLogin')){
+			console.log('fail');
+			res.view({message:false});
+		} else {
+			User.findOne()
+			.where({email:req.param('email')})
+			.exec(function(err, userFound){
+				console.log(userFound);
+				if(err) return res.serverError(err);
+				if(userFound){
+					bcrypt.compare(req.param('password'), userFound.password, function(err, result){
+						if(err) return res.serverError(err);
+						if(result){
+							console.log("authenticated");
+							req.session.authenticated = true;
+							return res.redirect('/user');
+						} else {
+							res.view({message:"No coincide el password"});
+						}
+					});
+				} else {
+					res.view({message:"No existe el usuario"});
+				}
+			});
+		}
+	}
 };
 

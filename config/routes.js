@@ -49,7 +49,13 @@ module.exports.routes = {
 
   'get /create': {
     controller: 'User',
-    action: 'nuevo'
+    action: 'create'
+  },
+
+
+  'get /login': {
+    controller: 'User',
+    action: 'login'
   },
 
   'DELETE /comment/:id' :'Comment.inactivateComment',
