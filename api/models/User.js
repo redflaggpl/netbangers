@@ -50,6 +50,14 @@ module.exports = {
       next();
     });
   },
+  beforeUpdate: function(values, next) {
+    console.log(values);
+    bcrypt.hash(values.password, 10, function(err, hash) {
+      if(err) return next(err);
+      values.password = hash;
+      next();
+    });
+  },
   updateCommentsCounter: function(params, next){
     console.log("params",params);
     User.findOne()

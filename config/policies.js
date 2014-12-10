@@ -48,7 +48,7 @@ module.exports.policies = {
 		// before letting any users feed our rabbits
 		// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
-  '*': 'sessionAuth',
+  '*': 'oauthBearer',
   UserController: {
     create: true,
     login: true
